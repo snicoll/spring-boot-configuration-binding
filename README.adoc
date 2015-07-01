@@ -1,0 +1,38 @@
+= Configuration properties support
+
+This project defines a simple `EmailProperties` with a bunch of properties. There are several ways you can inject
+a value for any of these properties. To simplify the full support, you can specify the property:
+
+* As a command-line arguments
+* As a Java system property
+* As an OS environment variables
+* In `application.properties` in the working directory of the application (next to your jar/war
+  typically). Ditto for profile support
+* In `application-xyz.properties` in the working directory of the application where `xyz` is the
+  name of a profile (that you need to enable obviously)
+* In `/application-xyz.properties` at the root of the classpath
+* In `/application.properties` at the root of the classpath
+* Using `@Value` to initialize the field (for instance to initialize the default value with a deprecated key)
+* As a default value in the code
+
+You can see this list as a first-win strategy (so typically command-line switch overrides a system property
+value).
+
+TIP: There are actually more sources, check http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config[the doc for more details]
+
+Spring Boot also uses a _relaxed_ binding since some characters are not supported by all OSes (dot or lower
+case properties typically).
+
+== Try it out
+
+Look at the various `application.properties` file, they contain a description of the basic stuff. You can
+also try the following:
+
+* Set a `EMAIL_OPS_NOTIFICATION` environment variables (you can do so from the Run configuration option) and look
+  how it overrides an existing value
+* Set a `EMAIL_NO_REPLY_TO` system property (look at `DemoApplication` for an example)
+* Add a `@Value` to any of the field of `EmailProperties`
+*
+
+NOTE: It turns out https://github.com/spring-projects/spring-boot/issues/3390[a bug was found] while building
+this sample app.
