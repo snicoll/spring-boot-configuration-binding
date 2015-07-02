@@ -32,7 +32,6 @@ also try the following:
   how it overrides an existing value
 * Set a `EMAIL_NO_REPLY_TO` system property (look at `DemoApplication` for an example)
 * Add a `@Value` to any of the field of `EmailProperties`
-*
 
 NOTE: It turns out https://github.com/spring-projects/spring-boot/issues/3390[a bug was found] while building
 this sample app.
